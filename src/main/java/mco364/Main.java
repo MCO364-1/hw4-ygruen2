@@ -9,14 +9,24 @@ import static mco364.AppSettings.step;
 public class Main {
 
     public static void main(String[] args) {
-        //Code the user input...
-        boolean gameInPlay = true;
-//        Scanner kb = new Scanner(System.in);
-//        PATTERN userChoice;
-//        
-//        System.out.println(Choose);
 
-        GameOfLife game = new GameOfLife(PATTERN.PENTADECATHLON);
+        boolean gameInPlay = true;
+        Scanner kb = new Scanner(System.in);
+        System.out.println("Choose a pattern: \nClick 1 for Blinker,"
+                + "\nClick 1 for Blinker,"
+                + "\nClick 2 for Toad,"
+                + "\nClick 3 for Beacon,"
+                + "\nClick 4 for Pulsar,"
+                + "\nClick 5 for Pentdecalthlon");
+        int patternChoice = kb.nextInt();
+        System.out.println("Choose 1 for automation, and 2 for step by step");
+        int userChoice = kb.nextInt();
+
+        if (userChoice == 2) {
+            AppSettings.IS_STEPbySTEP = true;
+        }
+
+        GameOfLife game = new GameOfLife(patternChoice);
 
         do {
             game.nextGen();
@@ -24,7 +34,6 @@ public class Main {
             sleep(500);
             step();
             clearConsole();
-            //Check if game is still in play based on user input...
         } while (gameInPlay);
 
     }
@@ -57,7 +66,7 @@ public class Main {
 
 class AppSettings {
 
-    public final static boolean IS_STEPbySTEP = false;
+    public static boolean IS_STEPbySTEP = false;
     static Scanner kb = new Scanner(System.in);
 
     public static void step() {

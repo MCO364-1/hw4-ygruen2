@@ -28,10 +28,6 @@ class MyThread implements Runnable {
     }
 }
 
-enum PATTERN {
-    BLINKER, TOAD, BEACON, PULSAR, PENTADECATHLON
-}
-
 public class GameOfLife {
 
     final int boardSize = 27;
@@ -40,9 +36,8 @@ public class GameOfLife {
     boolean[][] thisGeneration;
     boolean[][] nextGeneration;
     boolean isThisGeneration = false;
-    PATTERN pattern;
 
-    GameOfLife(PATTERN pattern) {
+    GameOfLife(int pattern) {
         setupBoard(pattern);
     }
 
@@ -97,14 +92,16 @@ public class GameOfLife {
 
     }
 
-    private void setupBoard(PATTERN pattern) {
-        if (pattern == PATTERN.BLINKER) {
+    private void setupBoard(int pattern) {
+        //Blinker
+        if (pattern == 1) {
             board1[12][11] = true;
             board1[12][12] = true;
             board1[12][13] = true;
         }
         
-        if (pattern == PATTERN.TOAD) {
+        //Toad
+        if (pattern == 2) {
             board1[12][12] = true;
             board1[12][13] = true;
             board1[12][14] = true;
@@ -113,7 +110,8 @@ public class GameOfLife {
             board1[13][13] = true;
         }
         
-        if (pattern == PATTERN.BEACON) {
+        //Beacon
+        if (pattern == 3) {
             board1[10][10] = true;
             board1[10][11] = true;
             board1[11][10] = true;
@@ -124,7 +122,8 @@ public class GameOfLife {
             board1[13][13] = true;
         }
         
-        if (pattern == PATTERN.PULSAR) {
+        //Pulsar
+        if (pattern == 4) {
             //Top Left
             board1[7][9] = true;
             board1[7][10] = true;
@@ -183,8 +182,8 @@ public class GameOfLife {
             
             
         }
-        
-        if (pattern == PATTERN.PENTADECATHLON) {
+        //Pentadechalthon
+        if (pattern == 5) {
             board1[11][10] = true;
             board1[11][15] = true;
             board1[12][8] = true;
