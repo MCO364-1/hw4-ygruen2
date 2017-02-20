@@ -1,23 +1,32 @@
 package mco364;
 
 import java.awt.Robot;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static mco364.AppSettings.step;
 
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+        //Code the user input...
+        boolean gameInPlay = true;
+//        Scanner kb = new Scanner(System.in);
+//        PATTERN userChoice;
+//        
+//        System.out.println(Choose);
 
-        clearConsole();
+        GameOfLife game = new GameOfLife(PATTERN.PENTADECATHLON);
 
-        for (int i = 0; i < 10; i++) {
-            System.out.println(i);
-            sleep(1000);
+        do {
+            game.nextGen();
+            game.printBoard();
+            sleep(500);
+            step();
             clearConsole();
-        }
+            //Check if game is still in play based on user input...
+        } while (gameInPlay);
+
     }
 
     public final static void clearConsole() {
@@ -41,7 +50,20 @@ public class Main {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException ex) {
-// ignore
+            // ignore
+        }
+    }
+}
+
+class AppSettings {
+
+    public final static boolean IS_STEPbySTEP = false;
+    static Scanner kb = new Scanner(System.in);
+
+    public static void step() {
+        if (IS_STEPbySTEP) {
+            System.out.println("Hit Enter to Continue");
+            kb.nextLine();
         }
     }
 }
